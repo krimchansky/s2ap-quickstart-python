@@ -66,7 +66,7 @@ def generate_offer_class(issuer_id, class_id):
       },
       'details': '20% off one cup of coffee at all Baconristas.'
     }
-    return offer_class
+  return offer_class
 
 def generate_offer_object(issuer_id, class_id, object_id):
   offer_object = {
