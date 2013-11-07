@@ -26,20 +26,37 @@ import time
 import urllib
 import webapp2
 import wob_payload
+import httplib2
 
-from apiclient.discovery import build
+from apiclient.discovery import build_from_document
 from apiclient.http import HttpMock
 from google.appengine.ext.webapp import template
 from oauth2client import crypt
+from oauth2client.client import SignedJwtAssertionCredentials
 
+# Load the key in PKCS 12 format that you downloaded from the Google API
+# Console when you created your Service account.
+f = file(config.KEY_FILE, 'rb')
+key = f.read()
+f.close()
 
-with open(os.path.join(os.path.dirname(__file__), config.KEY_FILE)) as fp:
-  app_key = string.join(fp.readlines())
+# Create an httplib2.Http object to handle our HTTP requests and authorize it
+# with the Credentials. Note that the first parameter, service_account_name,
+# is the Email address created for the Service account. It must be the email
+# address associated with the key that was created.
+credentials = SignedJwtAssertionCredentials(
+    config.SERVICE_ACCOUNT_NAME,
+    key,
+    scope='https://www.googleapis.com/auth/wallet_object.issuer')
+http = httplib2.Http()
+http = credentials.authorize(http)
 
-http = HttpMock(
-    os.path.join(os.path.dirname(__file__), config.DISCOVERY_JSON),
-    {'status': '200'})
-service = build('walletobjects', 'v1', http=http, developerKey=app_key)
+f = file(config.DISCOVERY_JSON, 'rb')
+disc_content = f.read()
+f.close()
+
+#service = build('walletobjects', 'v1', http=http)
+service = build_from_document(disc_content,'walletobjects', http=http)
 
 
 def displayIndex(request):
@@ -79,7 +96,7 @@ def handleJwt(request):
     wob_payload_object.addWalletObjects(offer_obj, 'OfferObject')
 
   payload = wob_payload_object.getSaveToWalletRequest()
-  signer = crypt.Signer.from_string(app_key)
+  signer = crypt.Signer.from_string(key)
   signed_jwt = crypt.make_signed_jwt(signer, payload)
 
   response = webapp2.Response(signed_jwt)
@@ -109,7 +126,6 @@ def handleInsert(request):
       config.ISSUER_ID, object_id)
     collection = service.offerclass()
 
-  api_object = json.dumps(api_object)
   api_request = collection.insert(body=api_object)
   api_response = api_request.execute()
   response = webapp2.Response('Successfully inserted object')
@@ -162,7 +178,7 @@ def handleWebservice(request):
         }
       }
     }
-  signer = crypt.Signer.from_string(app_key)
+  signer = crypt.Signer.from_string(key)
   signed_jwt = crypt.make_signed_jwt(signer, jwt)
   response = webapp2.Response(signed_jwt)
   response.content_type = 'Application/JWT'
