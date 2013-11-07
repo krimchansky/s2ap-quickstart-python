@@ -42,7 +42,7 @@ def generate_loyalty_class(issuer_id, class_id):
               'kind': 'walletobjects#image',
               'sourceUri': {
                   'kind': 'walletobjects#uri',
-                  'uri': 'http://ssl.gstatic.com/codesite/ph/images/search-48.png'
+                  'uri': 'http://www.google.com/landing/chrome/ugc/chrome-icon.jpg'
               }
           },
           'kind': 'walletobjects#walletObjectMessage'
