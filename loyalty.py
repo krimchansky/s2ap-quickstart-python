@@ -81,7 +81,7 @@ def generate_loyalty_object(issuer_id, class_id, object_id):
       },
       'classId' : '%s.%s' % (issuer_id, class_id),
       'id' : '%s.%s' % (issuer_id, object_id),
-      'textModuleDatas': [{
+      'textModulesData': [{
         'header': 'Rewards details',
         'body': 'Welcome to Baconrista rewards. For every 5 ' +
                 'coffees purchased you\'ll receive a free ' +
@@ -98,24 +98,24 @@ def generate_loyalty_object(issuer_id, class_id, object_id):
       'infoModuleData': {
         'hexFontColor': '#e7e12f',
         'hexBackgroundColor': '#b41515',
-        'labelValueRows': [{            
-            'columns': [{     
+        'labelValueRows': [{
+            'columns': [{
               'label': 'Member Name',
               'value': 'Joe Smith'
-          }, {                    
+          }, {
             'label': 'Next Reward in',
             'value': '2 coffees'
           }]
-        }, {                    
-            'columns': [{     
+        }, {
+            'columns': [{
               'label': 'Label 2',
               'value': 'Value 2'
-            }, {                  
+            }, {
               'label': 'Label 3',
               'value': 'Value 3'
             }]
         }],
-        'showLastUpdateTime': 'true' 
+        'showLastUpdateTime': 'true'
       },
       'loyaltyPoints': {
           'balance': {
