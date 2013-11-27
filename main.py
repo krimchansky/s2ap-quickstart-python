@@ -36,7 +36,7 @@ from oauth2client.client import SignedJwtAssertionCredentials
 
 # Load the key in PKCS 12 format that you downloaded from the Google API
 # Console when you created your Service account.
-f = file(config.KEY_FILE, 'rb')
+f = file(config.SERVICE_ACCOUNT_PRIVATE_KEY, 'rb')
 key = f.read()
 f.close()
 
@@ -45,7 +45,7 @@ f.close()
 # is the Email address created for the Service account. It must be the email
 # address associated with the key that was created.
 credentials = SignedJwtAssertionCredentials(
-    config.SERVICE_ACCOUNT_NAME,
+    config.SERVICE_ACCOUNT_EMAIL_ADDRESS,
     key,
     scope='https://www.googleapis.com/auth/wallet_object.issuer')
 http = httplib2.Http()
@@ -125,7 +125,6 @@ def handleInsert(request):
     api_object = offer.generate_offer_class(
       config.ISSUER_ID, object_id)
     collection = service.offerclass()
-
   api_request = collection.insert(body=api_object)
   api_response = api_request.execute()
   response = webapp2.Response('Successfully inserted object')
@@ -146,7 +145,7 @@ def handleWebservice(request):
   success = True
   if success:
     jwt = {
-      'iss': config.SERVICE_ACCOUNT_NAME,
+      'iss': config.SERVICE_ACCOUNT_EMAIL_ADDRESS,
       'aud': config.AUDIENCE,
       'typ': config.LOYALTY_WEB,
       'iat':  int(time.time()),
@@ -167,7 +166,7 @@ def handleWebservice(request):
   else:
     error_action = 'link' if request.params.get('linkingId') else 'signup'
     jwt = {
-      'iss': config.SERVICE_ACCOUNT_NAME,
+      'iss': config.SERVICE_ACCOUNT_EMAIL_ADDRESS,
       'aud': config.AUDIENCE,
       'typ': config.LOYALTY_WEB,
       'iat':  int(time.time()),

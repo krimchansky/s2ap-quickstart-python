@@ -29,8 +29,8 @@ class WOB_Payload:
   def __init__(self):
     self.audience = config.AUDIENCE
     self.type = config.SAVE_TO_WALLET
-    self.iss = config.SERVICE_ACCOUNT_NAME
-    self.origins = config.ORIGNS
+    self.iss = config.SERVICE_ACCOUNT_EMAIL_ADDRESS
+    self.origins = config.ORIGINS
     self.iat = int(time.time())
     self.payload = {}
 

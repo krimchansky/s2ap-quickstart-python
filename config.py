@@ -14,19 +14,20 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 
+SERVICE_ACCOUNT_EMAIL_ADDRESS = '177146692044@developer.gserviceaccount.com'
+ISSUER_ID = '2956054058108947698'
+SERVICE_ACCOUNT_PRIVATE_KEY = 'wobs-privatekey.pem'
 APPLICATION_NAME = 'YOUR_APP_NAME'
-CLIENT_ID = 'YOUR_CLIENT_ID'
 DISCOVERY_JSON = 'wobs-discovery.json'
-ISSUER_ID = 'YOUR_ISSUER_ID'
-KEY_FILE = 'YOUR_KEY_FILE_LOCATION'
-LOYALTY_CLASS_ID = 'LoyaltyClass'
-LOYALTY_OBJECT_ID = 'LoyaltyObject'
+LOYALTY_CLASS_ID = 'LoyaltyClassPython1'
+LOYALTY_OBJECT_ID = 'LoyaltyObjectPython1'
 OFFER_CLASS_ID = 'OfferClass'
 OFFER_OBJECT_ID = 'OfferObject'
-ORIGNS = [
-    'YOUR_ORIGN_URL_1',
-    'YOUR_ORIGIN_URL_2']
-SERVICE_ACCOUNT_NAME = 'YOUR_SERVICE_ACCOUNT_NAME'
+# List of origins for save to wallet button
+ORIGINS = [
+    'http://localhost:8080',
+    'http://wobs-quickstart-python.appspot.com',
+    'https://wobs-quickstart-python.appspot.com']
 
 # Constants that are application agnostic.
 AUDIENCE = 'google'
