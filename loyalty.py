@@ -31,18 +31,36 @@ def generate_loyalty_class(issuer_id, class_id):
           'latitude': 37.422601,
           'longitude': -122.085286
       }],
+      'textModulesData': [{
+        'header': 'Rewards details',
+        'body': 'Welcome to Baconrista rewards.  For every 5 ' +
+                'coffees purchased you\'ll receive a free '
+                'bacon fat latte. '
+      }],
+      'linksModuleData': {
+        'uris': [
+          {
+            'kind': 'walletobjects#uri',
+            'uri': 'http://www.baconrista.com',
+            'description': 'Baconrista'
+          }]
+      },
+      'infoModuleData': {
+        'hexFontColor': '#FF3300',
+        'hexBackgroundColor': '#ABABAB'
+      },
       'messages': [{
           'actionUri': {
               'kind': 'walletobjects#uri',
               'uri': 'http://baconrista.com'
           },
-          'body': 'Welcome to Baconrista Rewards!',
-          'header': 'Welcome',
+          'header': 'Welcome to Banconrista Rewards!',
+          'body': 'Featuring our new bacon donuts.',
           'image': {
               'kind': 'walletobjects#image',
               'sourceUri': {
                   'kind': 'walletobjects#uri',
-                  'uri': 'http://www.google.com/landing/chrome/ugc/chrome-icon.jpg'
+                  'uri': 'http://farm8.staticflickr.com/7302/11177240353_115daa5729_o.jpg'
               }
           },
           'kind': 'walletobjects#walletObjectMessage'
@@ -51,7 +69,7 @@ def generate_loyalty_class(issuer_id, class_id):
           'kind': 'walletobjects#image',
           'sourceUri': {
               'kind': 'walletobjects#uri',
-              'uri': 'http://www.google.com/landing/chrome/ugc/chrome-icon.jpg'
+              'uri': 'http://farm8.staticflickr.com/7340/11177041185_a61a7f2139_o.jpg'
           }
       },
       'programName': 'Baconrista Rewards',
@@ -72,7 +90,7 @@ def generate_loyalty_class(issuer_id, class_id):
 def generate_loyalty_object(issuer_id, class_id, object_id):
   loyalty_object = {
       'accountId': '1234567890',
-      'accountName': 'Joe Smith',
+      'accountName': 'Jane Doe',
       'barcode': {
           'alternateText' : '12345',
           'label' : 'User Id',
@@ -82,37 +100,40 @@ def generate_loyalty_object(issuer_id, class_id, object_id):
       'classId' : '%s.%s' % (issuer_id, class_id),
       'id' : '%s.%s' % (issuer_id, object_id),
       'textModulesData': [{
-        'header': 'Rewards details',
-        'body': 'Welcome to Baconrista rewards. For every 5 ' +
-                'coffees purchased you\'ll receive a free ' +
+        'header': 'Jane\'s Baconrista Rewards',
+        'body': 'You are 5 coffees away from receiving a free ' +
                 'bacon fat latte. '
       }],
       'linksModuleData': {
         'uris': [
           {
             'kind': 'walletobjects#uri',
-            'uri': 'http://www.example.com',
-            'description': 'Example'
+            'uri': 'http://www.baconrista.com/myaccount?id=1234567890',
+            'description': 'My Baconrista Account'
           }]
       },
       'infoModuleData': {
-        'hexFontColor': '#e7e12f',
-        'hexBackgroundColor': '#b41515',
+        'hexFontColor': '#FFFFFF',
+        'hexBackgroundColor': '#FC058C',
         'labelValueRows': [{
+            'hexFontColor': '#000000',
+            'hexBackgroundColor': '#BBCCFC',
             'columns': [{
               'label': 'Member Name',
-              'value': 'Joe Smith'
+              'value': 'Jane Doe'
           }, {
-            'label': 'Next Reward in',
-            'value': '2 coffees'
+            'label': 'Membership #',
+            'value': '1234567890'
           }]
         }, {
+            'hexFontColor': '#EDEDDD',
+            'hexBackgroundColor': '#FFFB00',
             'columns': [{
-              'label': 'Label 2',
-              'value': 'Value 2'
+              'label': 'Next Reward in',
+              'value': '2 coffees'
             }, {
-              'label': 'Label 3',
-              'value': 'Value 3'
+              'label': 'Member Since',
+              'value': '01/15/2013'
             }]
         }],
         'showLastUpdateTime': 'true'
@@ -122,7 +143,7 @@ def generate_loyalty_object(issuer_id, class_id, object_id):
               'string': '500'
           },
           'label': 'Points',
-          'pointsType': 'rewards'
+          'pointsType': 'points'
       },
       'state': 'active',
       'version': 1
