@@ -142,20 +142,27 @@ def handleWebservice(request):
   Returns:
     Returns object on success, or, error on failure.
   """
-  success = True
+  jsonobj = json.loads(request.body)
+  first_name = jsonobj['params']['walletUser']['firstName']
+  #using first_name to test different error codes
+  success = (first_name.startswith('SUCCESS'))
+
   if success:
+    #possible success status codes:
+    #SUCCESS, SUCCESS_ACCOUNT_ALREADY_CREATED, SUCCESS_ACCOUNT_ALREADY_LINKED
     jwt = {
       'iss': config.SERVICE_ACCOUNT_EMAIL_ADDRESS,
       'aud': config.AUDIENCE,
       'typ': config.LOYALTY_WEB,
       'iat':  int(time.time()),
       'payload': {
-        'webserviceResponse': {
-          'result': 'approved',
-          'message': 'Success.'
-        },
         'loyaltyObjects': [],
-        'offerObjects': []
+        'offerObjects': [],
+        'loyaltyClasses': [],
+        'offerClasses': [],
+        'webserviceResponse': {
+          'status': 'SUCCESS'
+        },
       }
     }
     linking_id = request.params.get('linkingId')
@@ -164,6 +171,9 @@ def handleWebservice(request):
         config.ISSUER_ID, config.LOYALTY_CLASS_ID, loyalty_object_id)
     jwt['payload']['loyaltyObjects'].append(loyalty_object)
   else:
+    #possible status error codes:
+    #ERROR_INVALID_DATA_FORMAT, ERROR_DATA_ON_MERCHANT_RECORD_DIFFERENT
+    #ERROR_INVALID_LINKING_ID, ERROR_PREEXISTING_ACCOUNT_REQUIRES_LINKING, ERROR_ACCOUNT_ALREADY_LINKED
     error_action = 'link' if request.params.get('linkingId') else 'signup'
     jwt = {
       'iss': config.SERVICE_ACCOUNT_EMAIL_ADDRESS,
@@ -172,9 +182,9 @@ def handleWebservice(request):
       'iat':  int(time.time()),
       'payload': {
         'webserviceResponse': {
-          'message': 'Sorry we can\'t complete this %s' % error_action,
-          'result': 'rejected'
-        }
+          'status': 'ERROR_INVALID_DATA_FORMAT',
+          'invalid_field': ['zipcode','phone']
+        },
       }
     }
   signer = crypt.Signer.from_string(key)
