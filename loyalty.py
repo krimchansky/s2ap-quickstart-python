@@ -19,10 +19,6 @@ def generate_loyalty_class(issuer_id, class_id):
       'accountIdLabel': 'Member Id',
       'accountNameLabel': 'Member Name',
       'allowMultipleUsersPerObject': True,
-      'homepageUri': {
-          'kind': 'walletobjects#uri',
-          'uri': 'https://www.example.com'
-       },
       'id': '%s.%s' % (issuer_id, class_id),
       'issuerName': 'Baconrista',
       'kind': 'walletobjects#loyaltyClass',
