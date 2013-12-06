@@ -157,9 +157,6 @@ def handleWebservice(request):
       'iat':  int(time.time()),
       'payload': {
         'loyaltyObjects': [],
-        'offerObjects': [],
-        'loyaltyClasses': [],
-        'offerClasses': [],
         'webserviceResponse': {
           'status': 'SUCCESS'
         },
