@@ -35,24 +35,12 @@ function init() {
   // Bind click event for 'Insert Loyalty Class' button.
   document.getElementById('loyalty').addEventListener('click', function() {
     $.get('insert?type=loyalty', function(data) {
-      // The following errors can be returned from a web service.
-      // Error code (400): At least one entrypoint mapping for [g_list] should
-      // be specified.
-      // Error code (400): Issuer name cannot be empty.
-      // Error code (409): Class already exist.
-      // Error code (503): Backend Error.
       console.log(data);
     });
   });
   // Bind click event for 'Insert Offer Class' button.
   document.getElementById('offer').addEventListener('click', function() {
     $.get('insert?type=offer', function(data) {
-      // The following errors can be returned from a web service.
-      // Error code (400): At least one entrypoint mapping for [g_list] should
-      // be specified.
-      // Error code (400): Issuer name cannot be empty.
-      // Error code (409): Class already exist.
-      // Error code (503): Backend Error.
       console.log(data);
     });
   });
