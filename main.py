@@ -180,7 +180,7 @@ def handleWebservice(request):
       'payload': {
         'webserviceResponse': {
           'status': 'ERROR_INVALID_DATA_FORMAT',
-          'invalidField': ['zipcode','phone']
+          'invalidWalletUserFields': ['zipcode','phone']
         },
       }
     }
