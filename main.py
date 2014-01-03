@@ -191,9 +191,42 @@ def handleWebservice(request):
   return response
 
 
+def handleList(request):
+  """List wallet object according to parameters.
+
+  Args:
+    request: A HTTP request object.
+
+  Returns:
+    List of wallet objects
+  """
+  wob_type = request.GET.get('type', '')
+  class_id = request.GET.get('class_id', '')
+  print (wob_type)
+  if wob_type == 'loyalty_class':
+    results = service.loyaltyclass().list(issuerId=config.ISSUER_ID,
+      maxResults='25').execute()
+    results = service.loyaltyclass().list(issuerId=config.ISSUER_ID).execute()
+  elif wob_type == 'offer_class':
+    results = service.offerclass().list(issuerId=config.ISSUER_ID,
+      maxResults='25').execute()
+  elif wob_type == 'loyalty_object':
+    results = service.loyaltyobject().list(classId=class_id,
+      maxResults='25').execute()
+  elif wob_type == 'offer_object':
+    results = service.offerobject().list(classId=class_id,
+      maxResults='25').execute()
+  print results['pagination']['resultsPerPage']
+  if 'nextPageToken' in results['pagination']:
+    print results['pagination']['nextPageToken']
+  for wallet_object in results['resources']:
+    print wallet_object['id']
+
+
 application = webapp2.WSGIApplication([
     ('/', displayIndex),
     ('/jwt', handleJwt),
     ('/insert', handleInsert),
+    ('/list', handleList),
     ('/webservice', handleWebservice)
     ])
