@@ -18,3 +18,5 @@ Save to Wallet is handled on both the client and server. The index.html file is 
 
 ## Webservice API
 The Webservice API handler is the handleWebService function in main.py. This function handles Webservice requests, generates Loyalty Objects converts Loyalty Objects to JWTs, and responds with the JWT. You can configure your discoverable to point to the URL handled by this function.
+
+[![Analytics](https://ga-beacon.appspot.com/UA-46956809-1/walletobjects-quickstart-python/README.md)](https://github.com/igrigorik/ga-beacon)
