@@ -44,6 +44,12 @@ function init() {
       console.log(data);
     });
   });
+  // Bind click event for 'Insert Gift Card Class' button.
+  document.getElementById('giftcard').addEventListener('click', function() {
+    $.get('insert?type=giftcard', function(data) {
+      console.log(data);
+    });
+  });
 
   $.when(
     // Get jwt of loyalty object and render 'Save card' wallet button.
@@ -62,6 +68,15 @@ function init() {
       saveToWallet.setAttribute('onsuccess', 'successHandler');
       saveToWallet.setAttribute('onfailure', 'failureHandler');
       document.querySelector('#offersave').appendChild(saveToWallet);
+      }
+    ),
+    // Get jwt of giftcard object and render 'Get Gift Card' wallet button.
+    $.get('jwt?type=giftcard', function(data) {
+      saveToWallet = document.createElement('g:savetowallet');
+      saveToWallet.setAttribute('jwt', data);
+      saveToWallet.setAttribute('onsuccess', 'successHandler');
+      saveToWallet.setAttribute('onfailure', 'failureHandler');
+      document.querySelector('#giftcardsave').appendChild(saveToWallet);
       }
     )
     ).done(function() {

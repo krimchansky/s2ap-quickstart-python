@@ -23,7 +23,9 @@ class WOB_Payload:
       'LoyaltyClass': 'loyaltyClasses',
       'LoyaltyObject': 'loyaltyObjects',
       'OfferClass': 'offerClasses',
-      'OfferObject': 'offerObjects'
+      'OfferObject': 'offerObjects',
+      'GiftCardClass': 'giftCardClasses',
+      'GiftCardObject': 'giftCardObjects'
   }
 
   def __init__(self):

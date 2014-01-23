@@ -1,5 +1,5 @@
-application: YOUR_APP_NAME
-version: 1
+application: wobs-quickstart-python
+version: 4 
 runtime: python27
 api_version: 1
 threadsafe: true

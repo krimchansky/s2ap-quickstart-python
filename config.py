@@ -23,6 +23,8 @@ LOYALTY_CLASS_ID = 'LoyaltyClass'
 LOYALTY_OBJECT_ID = 'LoyaltyObject'
 OFFER_CLASS_ID = 'OfferClass'
 OFFER_OBJECT_ID = 'OfferObject'
+GIFTCARD_CLASS_ID = 'GiftCardClassPython'
+GIFTCARD_OBJECT_ID = 'GiftCardObjectPython'
 # List of origins for save to wallet button
 ORIGINS = [
     'http://localhost:8080']

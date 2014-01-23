@@ -18,8 +18,6 @@ import config
 import json
 import jwt
 import logging
-import loyalty
-import offer
 import os
 import string
 import time
@@ -27,6 +25,9 @@ import urllib
 import webapp2
 import wob_payload
 import httplib2
+import loyalty
+import offer
+import giftcard
 
 from apiclient.discovery import build_from_document
 from apiclient.http import HttpMock
@@ -51,6 +52,7 @@ credentials = SignedJwtAssertionCredentials(
 http = httplib2.Http()
 http = credentials.authorize(http)
 
+logging.info('Credentials: %s' % credentials.to_json())
 f = file(config.DISCOVERY_JSON, 'rb')
 disc_content = f.read()
 f.close()
@@ -95,6 +97,11 @@ def handleJwt(request):
         config.ISSUER_ID, config.OFFER_CLASS_ID, config.OFFER_OBJECT_ID)
     wob_payload_object.addWalletObjects(offer_obj, 'OfferObject')
 
+  elif jwt_type == 'giftcard':
+    giftcard_obj = giftcard.generate_giftcard_object(
+        config.ISSUER_ID, config.GIFTCARD_CLASS_ID, config.GIFTCARD_OBJECT_ID)
+    wob_payload_object.addWalletObjects(giftcard_obj, 'GiftCardObject')
+
   payload = wob_payload_object.getSaveToWalletRequest()
   signer = crypt.Signer.from_string(key)
   signed_jwt = crypt.make_signed_jwt(signer, payload)
@@ -125,6 +132,11 @@ def handleInsert(request):
     api_object = offer.generate_offer_class(
       config.ISSUER_ID, object_id)
     collection = service.offerclass()
+  elif insert_type == 'giftcard':
+    object_id = config.GIFTCARD_CLASS_ID
+    api_object = giftcard.generate_giftcard_class(
+      config.ISSUER_ID, object_id)
+    collection = service.giftcardclass()
   api_request = collection.insert(body=api_object)
   api_response = api_request.execute()
   response = webapp2.Response('Successfully inserted object')
@@ -210,11 +222,17 @@ def handleList(request):
   elif wob_type == 'offer_class':
     results = service.offerclass().list(issuerId=config.ISSUER_ID,
       maxResults='25').execute()
+  elif wob_type == 'giftcard_class':
+    results = service.giftcardclass().list(issuerId=config.ISSUER_ID,
+      maxResults='25').execute()
   elif wob_type == 'loyalty_object':
     results = service.loyaltyobject().list(classId=class_id,
-      maxResults='25').execute()
+      maxResults='100').execute()
   elif wob_type == 'offer_object':
     results = service.offerobject().list(classId=class_id,
+      maxResults='25').execute()
+  elif wob_type == 'giftcard_object':
+    results = service.giftcardobject().list(classId=class_id,
       maxResults='25').execute()
   print results['pagination']['resultsPerPage']
   if 'nextPageToken' in results['pagination']:
