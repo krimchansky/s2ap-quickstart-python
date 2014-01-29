@@ -24,8 +24,20 @@ def generate_loyalty_class(issuer_id, class_id):
       'kind': 'walletobjects#loyaltyClass',
       'locations': [{
           'kind': 'walletobjects#latLongPoint',
-          'latitude': 37.422601,
-          'longitude': -122.085286
+          'latitude': 37.424015499999996,
+          'longitude': -122.09259560000001
+          },{
+          'kind': 'walletobjects#latLongPoint',
+          'latitude': 37.424354,
+          'longitude': -122.09508869999999
+          },{
+          'kind': 'walletobjects#latLongPoint',
+          'latitude': 37.7901435,
+          'longitude': -122.39026709999997
+          },{
+          'kind': 'walletobjects#latLongPoint',
+          'latitude': 40.7406578,
+          'longitude': -74.00208940000002
       }],
       'textModulesData': [{
         'header': 'Rewards details',
@@ -45,6 +57,18 @@ def generate_loyalty_class(issuer_id, class_id):
         'hexFontColor': '#FF3300',
         'hexBackgroundColor': '#ABABAB'
       },
+      'imageModulesData': [
+        {
+          'mainImage': {
+            'kind': 'walletobjects#image',
+            'sourceUri': {
+              'kind': 'walletobjects#uri',
+              'uri':  'http://farm8.staticflickr.com/7401/11177116434_d8e600bba6_o.jpg',
+              'description': 'Coffee beans'
+            }
+          }
+        }
+      ],
       'messages': [{
           'actionUri': {
               'kind': 'walletobjects#uri',
@@ -70,10 +94,10 @@ def generate_loyalty_class(issuer_id, class_id):
       },
       'programName': 'Baconrista Rewards',
       'renderSpecs': [{
-          'templateFamily': '1.loyaltyCard1_list',
+          'templateFamily': '1.loyalty_list',
           'viewName': 'g_list'
           }, {
-          'templateFamily': '1.loyaltyCard1_expanded',
+          'templateFamily': '1.loyalty_expanded',
           'viewName': 'g_expanded'
       }],
       'rewardsTier': 'Gold',
