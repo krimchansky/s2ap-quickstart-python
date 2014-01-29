@@ -25,46 +25,76 @@ def generate_offer_class(issuer_id, class_id):
       },
       'renderSpecs': [{
           'viewName': 'g_list',
-          'templateFamily': '1.offer1_list'
+          'templateFamily': '1.offer_list'
           },{
           'viewName': 'g_expanded',
-          'templateFamily': '1.offer1_expanded'
+          'templateFamily': '1.offer_expanded'
       }],
-      'allowMultipleUsersPerObject': True,
-      'homepageUri': {
-          'kind': 'walletobjects#uri',
-          'uri': 'http://www.google.com/landing/chrome/ugc/chrome-icon.jpg',
-          'description': 'Website'
-      },
-      'locations': [{
-          'kind': 'walletobjects#latLongPoint',
-          'latitude': 37.442087,
-          'longitude': -122.161446
-          },{
-          'kind': 'walletobjects#latLongPoint',
-          'latitude': 37.429379,
-          'longitude': -122.12272999999999
-          },{
-          'kind': 'walletobjects#latLongPoint',
-          'latitude': 37.333646,
-          'longitude': -121.884853
-      }],
-      'reviewStatus': 'underReview',
-      'review': {
-          'comments': 'Real auto approval by system'
-      },
-      'title': '20% off one cup of cofee',
+      'title': '20% off on one bacon fat latte',
       'redemptionChannel': 'both',
       'provider': 'Baconrista Deals',
       'titleImage': {
           'kind': 'walletobjects#image',
           'sourceUri': {
               'kind': 'walletobjects#uri',
-              'uri': 'http://3.bp.blogspot.com/-AvC1agljv9Y/TirbDXOBIPI/' +
-                     'AAAAAAAACK0/hR2gs5h2H6A/s1600/Bacon%2BWallpaper.png'
+              'uri': 'http://farm4.staticflickr.com/3723/11177041115_6e6a3b6f49_o.jpg'
           }
       },
-      'details': '20% off one cup of coffee at all Baconristas.'
+      'allowMultipleUsersPerObject': True,
+      'locations': [{
+          'kind': 'walletobjects#latLongPoint',
+          'latitude': 37.424015499999996,
+          'longitude': -122.09259560000001
+          },{
+          'kind': 'walletobjects#latLongPoint',
+          'latitude': 37.424354,
+          'longitude': -122.09508869999999
+          },{
+          'kind': 'walletobjects#latLongPoint',
+          'latitude': 37.7901435,
+          'longitude': -122.39026709999997
+          },{
+          'kind': 'walletobjects#latLongPoint',
+          'latitude': 40.7406578,
+          'longitude': -74.00208940000002
+      }],
+      'reviewStatus': 'underReview',
+      'review': {
+          'comments': 'Real auto approval by system'
+      },
+      'textModulesData': [{
+        'header': 'Details',
+        'body': '20% off one cup of coffee at all Baconrista Coffee locations. ' +
+                'Only one can be used per visit.'
+       },{
+        'header': 'About Baconrista',
+        'body': 'Since 2013, Baconrista Coffee has been committed to making high ' +
+                'quality bacon coffee. Visit us in our stores or online at www.baconrista.com'
+      }],
+      'linksModuleData': {
+        'uris': [
+          {
+            'kind': 'walletobjects#uri',
+            'uri': 'http://www.baconrista.com',
+            'description': 'Baconrista'
+          },{
+            'kind': 'walletobjects#uri',
+            'uri': 'https://maps.google.com/?q=Google+Headquarters,+Amphitheatre+Parkway,+Mountain+View,+CA',
+            'description': 'Store Location'
+          }]
+      },
+      'imageModulesData': [
+        {
+          'mainImage': {
+            'kind': 'walletobjects#image',
+            'sourceUri': {
+              'kind': 'walletobjects#uri',
+              'uri':  'http://farm8.staticflickr.com/7401/11177116434_d8e600bba6_o.jpg',
+              'description': 'Coffee beans'
+            }
+          }
+        }
+      ],
     }
   return offer_class
 
@@ -82,7 +112,7 @@ def generate_offer_object(issuer_id, class_id, object_id):
           'kind': 'walletobjects#barcode',
           'type': 'upcA',
           'value': '123456789012',
-          'label': 'User Id',
+          'label': 'Offer Code',
           'alternateText': '12345'
       }
   }
