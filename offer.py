@@ -79,7 +79,7 @@ def generate_offer_class(issuer_id, class_id):
             'description': 'Baconrista'
           },{
             'kind': 'walletobjects#uri',
-            'uri': 'https://maps.google.com/?q=Google+Headquarters,+Amphitheatre+Parkway,+Mountain+View,+CA',
+            'uri': 'geo:0,0?q=baconrista',
             'description': 'Store Location'
           }]
       },

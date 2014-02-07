@@ -158,6 +158,23 @@ def generate_loyalty_object(issuer_id, class_id, object_id):
         }],
         'showLastUpdateTime': 'true'
       },
+      'messages': [{
+          'actionUri': {
+              'kind': 'walletobjects#uri',
+              'uri': 'http://baconrista.com'
+          },
+          'header': 'Jane, welcome to Banconrista Rewards',
+          'body': 'Thanks for joining our program. Show this message to ' +
+                  'our barista for your first free coffee on us!',
+          'image': {
+              'kind': 'walletobjects#image',
+              'sourceUri': {
+                  'kind': 'walletobjects#uri',
+                  'uri': 'http://farm4.staticflickr.com/3723/11177041115_6e6a3b6f49_o.jpg'
+              }
+          },
+          'kind': 'walletobjects#walletObjectMessage'
+      }],
       'loyaltyPoints': {
           'balance': {
               'string': '500'
