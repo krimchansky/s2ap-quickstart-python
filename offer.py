@@ -75,7 +75,7 @@ def generate_offer_class(issuer_id, class_id):
         'uris': [
           {
             'kind': 'walletobjects#uri',
-            'uri': 'geo:0,0?q=google',
+            'uri': 'https://maps.google.com/?q=Google+Headquarters,+Amphitheatre+Parkway,+Mountain+View,+CA',
             'description': 'Nearby Locations'
           },{
             'kind': 'walletobjects#uri',
