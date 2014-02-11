@@ -42,13 +42,13 @@ def generate_loyalty_class(issuer_id, class_id):
       'textModulesData': [{
         'header': 'Rewards details',
         'body': 'Welcome to Baconrista rewards.  Enjoy your rewards for being a loyal customer. ' +
-                '10 points for ever dollar spent.  Redeem your points for free coffee, bacon and more! '
+                '10 points for every dollar spent.  Redeem your points for free coffee, bacon and more!'
       }],
       'linksModuleData': {
         'uris': [
           {
             'kind': 'walletobjects#uri',
-            'uri': 'https://maps.google.com/?q=Google+Headquarters,+Amphitheatre+Parkway,+Mountain+View,+CA',
+            'uri': 'http://maps.google.com/maps?q=google',
             'description': 'Nearby Locations'
           },{
             'kind': 'walletobjects#uri',
@@ -125,7 +125,7 @@ def generate_loyalty_object(issuer_id, class_id, object_id):
       'textModulesData': [{
         'header': 'Jane\'s Baconrista Rewards',
         'body': 'Save more at your local Mountain View store Jane. ' +
-                ' You get 1 bacon fat latte for every 5 coffees purchased.  ' +
+                'You get 1 bacon fat latte for every 5 coffees purchased.  ' +
                 'Also just for you, 10% off all pastries in the Mountain View store.'
       }],
       'linksModuleData': {
