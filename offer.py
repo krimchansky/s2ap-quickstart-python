@@ -30,7 +30,7 @@ def generate_offer_class(issuer_id, class_id):
           'viewName': 'g_expanded',
           'templateFamily': '1.offer_expanded'
       }],
-      'title': '20% off on one bacon fat latte',
+      'title': '20% off one bacon fat latte',
       'redemptionChannel': 'both',
       'provider': 'Baconrista Deals',
       'titleImage': {
@@ -75,12 +75,12 @@ def generate_offer_class(issuer_id, class_id):
         'uris': [
           {
             'kind': 'walletobjects#uri',
-            'uri': 'http://www.baconrista.com',
-            'description': 'Baconrista'
+            'uri': 'geo:0,0?q=google',
+            'description': 'Nearby Locations'
           },{
             'kind': 'walletobjects#uri',
-            'uri': 'geo:0,0?q=baconrista',
-            'description': 'Store Location'
+            'uri': 'tel:6505555555',
+            'description': 'Call Customer Service'
           }]
       },
       'imageModulesData': [
@@ -89,7 +89,7 @@ def generate_offer_class(issuer_id, class_id):
             'kind': 'walletobjects#image',
             'sourceUri': {
               'kind': 'walletobjects#uri',
-              'uri':  'http://farm8.staticflickr.com/7401/11177116434_d8e600bba6_o.jpg',
+              'uri':  'http://farm4.staticflickr.com/3738/12440799783_3dc3c20606_b.jpg',
               'description': 'Coffee beans'
             }
           }

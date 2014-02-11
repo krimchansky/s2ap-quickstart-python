@@ -41,21 +41,24 @@ def generate_loyalty_class(issuer_id, class_id):
       }],
       'textModulesData': [{
         'header': 'Rewards details',
-        'body': 'Welcome to Baconrista rewards.  For every 5 ' +
-                'coffees purchased you\'ll receive a free '
-                'bacon fat latte. '
+        'body': 'Welcome to Baconrista rewards.  Enjoy your rewards for being a loyal customer. ' +
+                '10 points for ever dollar spent.  Redeem your points for free coffee, bacon and more! '
       }],
       'linksModuleData': {
         'uris': [
           {
             'kind': 'walletobjects#uri',
-            'uri': 'http://www.baconrista.com',
-            'description': 'Baconrista'
+            'uri': 'geo:0,0?q=google',
+            'description': 'Nearby Locations'
+          },{
+            'kind': 'walletobjects#uri',
+            'uri': 'tel:6505555555',
+            'description': 'Call Customer Service'
           }]
       },
       'infoModuleData': {
-        'hexFontColor': '#FF3300',
-        'hexBackgroundColor': '#ABABAB'
+        'hexFontColor': '#F8EDC1',
+        'hexBackgroundColor': '#442905'
       },
       'imageModulesData': [
         {
@@ -63,7 +66,7 @@ def generate_loyalty_class(issuer_id, class_id):
             'kind': 'walletobjects#image',
             'sourceUri': {
               'kind': 'walletobjects#uri',
-              'uri':  'http://farm8.staticflickr.com/7401/11177116434_d8e600bba6_o.jpg',
+              'uri':  'http://farm4.staticflickr.com/3738/12440799783_3dc3c20606_b.jpg',
               'description': 'Coffee beans'
             }
           }
@@ -121,8 +124,9 @@ def generate_loyalty_object(issuer_id, class_id, object_id):
       'id' : '%s.%s' % (issuer_id, object_id),
       'textModulesData': [{
         'header': 'Jane\'s Baconrista Rewards',
-        'body': 'You are 5 coffees away from receiving a free ' +
-                'bacon fat latte. '
+        'body': 'Save more at your local Mountain View store Jane. ' +
+                ' You get 1 bacon fat latte for every 5 coffees purchased.  ' +
+                'Also just for you, 10% off all pastries in the Mountain View store.'
       }],
       'linksModuleData': {
         'uris': [
@@ -133,27 +137,23 @@ def generate_loyalty_object(issuer_id, class_id, object_id):
           }]
       },
       'infoModuleData': {
-        'hexFontColor': '#FFFFFF',
-        'hexBackgroundColor': '#FC058C',
+        'hexFontColor': '#F8EDC1',
+        'hexBackgroundColor': '#442905',
         'labelValueRows': [{
-            'hexFontColor': '#000000',
-            'hexBackgroundColor': '#BBCCFC',
-            'columns': [{
-              'label': 'Member Name',
-              'value': 'Jane Doe'
-          }, {
-            'label': 'Membership #',
-            'value': '1234567890'
-          }]
-        }, {
-            'hexFontColor': '#EDEDDD',
-            'hexBackgroundColor': '#FFFB00',
+            'hexFontColor': '#F8EDC1',
+            'hexBackgroundColor': '#922635',
             'columns': [{
               'label': 'Next Reward in',
               'value': '2 coffees'
             }, {
               'label': 'Member Since',
               'value': '01/15/2013'
+            },{
+            'hexFontColor': '#F8EDC1',
+            'hexBackgroundColor': '#922635',
+            'columns': [{
+              'label': 'Local Store',
+              'value': 'Mountain View'
             }]
         }],
         'showLastUpdateTime': 'true'
