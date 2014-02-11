@@ -148,7 +148,8 @@ def generate_loyalty_object(issuer_id, class_id, object_id):
             }, {
               'label': 'Member Since',
               'value': '01/15/2013'
-            },{
+            }]
+          },{
             'hexFontColor': '#F8EDC1',
             'hexBackgroundColor': '#922635',
             'columns': [{
