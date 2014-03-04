@@ -28,6 +28,7 @@ import httplib2
 import loyalty
 import offer
 import giftcard
+import random
 
 from apiclient.discovery import build_from_document
 from apiclient.http import HttpMock
@@ -86,20 +87,21 @@ def handleJwt(request):
   """
   wob_payload_object = wob_payload.WOB_Payload()
   jwt_type = request.GET.get('type', '')
+  obj_id = str(random.randint(1, 100))
 
   if jwt_type == 'loyalty':
     loyalty_obj = loyalty.generate_loyalty_object(
-        config.ISSUER_ID, config.LOYALTY_CLASS_ID, config.LOYALTY_OBJECT_ID)
+        config.ISSUER_ID, config.LOYALTY_CLASS_ID, config.LOYALTY_OBJECT_ID + obj_id)
     wob_payload_object.addWalletObjects(loyalty_obj, 'LoyaltyObject')
 
   elif jwt_type == 'offer':
     offer_obj = offer.generate_offer_object(
-        config.ISSUER_ID, config.OFFER_CLASS_ID, config.OFFER_OBJECT_ID)
+        config.ISSUER_ID, config.OFFER_CLASS_ID, config.OFFER_OBJECT_ID + obj_id)
     wob_payload_object.addWalletObjects(offer_obj, 'OfferObject')
 
   elif jwt_type == 'giftcard':
     giftcard_obj = giftcard.generate_giftcard_object(
-        config.ISSUER_ID, config.GIFTCARD_CLASS_ID, config.GIFTCARD_OBJECT_ID)
+        config.ISSUER_ID, config.GIFTCARD_CLASS_ID, config.GIFTCARD_OBJECT_ID + obj_id)
     wob_payload_object.addWalletObjects(giftcard_obj, 'GiftCardObject')
 
   payload = wob_payload_object.getSaveToWalletRequest()
