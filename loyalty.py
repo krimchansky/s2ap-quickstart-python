@@ -41,14 +41,14 @@ def generate_loyalty_class(issuer_id, class_id):
       }],
       'textModulesData': [{
         'header': 'Rewards details',
-        'body': 'Welcome to Baconrista rewards.  Enjoy your rewards for being a loyal customer. ' +
+        'body': '\u00B0 \u00ae \u00a9 Welcome to Baconrista rewards.  Enjoy your rewards for being a loyal customer. ' +
                 '10 points for every dollar spent.  Redeem your points for free coffee, bacon and more!'
       }],
       'linksModuleData': {
         'uris': [
           {
             'kind': 'walletobjects#uri',
-            'uri': 'http://maps.google.com/maps?q=google',
+            'uri': 'http://maps.google.com/?q=google',
             'description': 'Nearby Locations'
           },{
             'kind': 'walletobjects#uri',

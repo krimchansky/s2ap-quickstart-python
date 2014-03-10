@@ -75,7 +75,7 @@ def generate_offer_class(issuer_id, class_id):
         'uris': [
           {
             'kind': 'walletobjects#uri',
-            'uri': 'http://maps.google.com/maps?q=google',
+            'uri': 'http://maps.google.com/?q=google',
             'description': 'Nearby Locations'
           },{
             'kind': 'walletobjects#uri',
