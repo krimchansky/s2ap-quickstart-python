@@ -103,6 +103,7 @@ def generate_offer_object(issuer_id, class_id, object_id):
       'classId': '%s.%s' % (issuer_id, class_id),
       'id': '%s.%s' % (issuer_id, object_id),
       'state': 'active',
+      'version': '1',
       'issuerData': {
           'kind': 'walletobjects#typedValue'
       },

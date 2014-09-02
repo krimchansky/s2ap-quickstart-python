@@ -97,6 +97,7 @@ def generate_giftcard_object(issuer_id, class_id, object_id):
             'description': 'My Baconrista Gift Card Purchases'
           }]
       },
-      'state': 'active'
+      'state': 'active',
+      'version': '1'
   }
   return giftcard_object

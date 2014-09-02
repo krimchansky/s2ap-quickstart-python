@@ -182,6 +182,7 @@ def generate_loyalty_object(issuer_id, class_id, object_id):
           'label': 'Points',
           'pointsType': 'points'
       },
-      'state': 'active'
+      'state': 'active',
+      'version': '1'
   }
   return loyalty_object
