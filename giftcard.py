@@ -58,8 +58,7 @@ def generate_giftcard_class(issuer_id, class_id):
           'longitude': -122.085286
       }],
       'allowMultipleUsersPerObject': True,
-      'reviewStatus': 'underReview',
-      'version': '1'
+      'reviewStatus': 'underReview'
     }
   return giftcard_class
 
@@ -98,7 +97,6 @@ def generate_giftcard_object(issuer_id, class_id, object_id):
             'description': 'My Baconrista Gift Card Purchases'
           }]
       },
-      'state': 'active',
-      'version': 1
+      'state': 'active'
   }
   return giftcard_object

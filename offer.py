@@ -18,7 +18,6 @@ def generate_offer_class(issuer_id, class_id):
   offer_class = {
       'kind': 'walletobjects#offerClass',
       'id': '%s.%s' % (issuer_id, class_id),
-      'version': '1',
       'issuerName': 'Baconrista Coffee',
       'issuerData': {
           'kind': 'walletobjects#typedValue'
@@ -103,7 +102,6 @@ def generate_offer_object(issuer_id, class_id, object_id):
       'kind': 'walletobjects#offerObject',
       'classId': '%s.%s' % (issuer_id, class_id),
       'id': '%s.%s' % (issuer_id, object_id),
-      'version': '1',
       'state': 'active',
       'issuerData': {
           'kind': 'walletobjects#typedValue'

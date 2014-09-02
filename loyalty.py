@@ -105,8 +105,7 @@ def generate_loyalty_class(issuer_id, class_id):
       }],
       'rewardsTier': 'Gold',
       'rewardsTierLabel': 'Tier',
-      'reviewStatus': 'underReview',
-      'version': '1'
+      'reviewStatus': 'underReview'
   }
   return loyalty_class
 
@@ -183,7 +182,6 @@ def generate_loyalty_object(issuer_id, class_id, object_id):
           'label': 'Points',
           'pointsType': 'points'
       },
-      'state': 'active',
-      'version': 1
+      'state': 'active'
   }
   return loyalty_object
