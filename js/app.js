@@ -52,7 +52,7 @@ function init() {
   });*/
 
   $.when(
-    // Get jwt of loyalty object and render 'Save card' wallet button.
+    // Get jwt of loyalty object and render 'Save to Android Pay' button.
     $.get('jwt?type=loyalty', function(data) {
       saveToAndroidPay = document.createElement('g:savetoandroidpay');
       saveToAndroidPay.setAttribute('jwt', data);
@@ -61,7 +61,7 @@ function init() {
       document.querySelector('#loyaltysave').appendChild(saveToAndroidPay);
       }
     ),
-    // Get jwt of offer object and render 'Get offer' wallet button.
+    // Get jwt of offer object and render 'Save to Android Pay' button.
     $.get('jwt?type=offer', function(data) {
       saveToAndroidPay = document.createElement('g:savetoandroidpay');
       saveToAndroidPay.setAttribute('jwt', data);
@@ -70,7 +70,7 @@ function init() {
       document.querySelector('#offersave').appendChild(saveToAndroidPay);
       }
     )/*,
-    // Get jwt of giftcard object and render 'Get Gift Card' wallet button.
+    // Get jwt of giftcard object and render 'Save to Android Pay' button.
     $.get('jwt?type=giftcard', function(data) {
       saveToAndroidPay = document.createElement('g:savetoandroidpay');
       saveToAndroidPay.setAttribute('jwt', data);
