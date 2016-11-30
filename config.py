@@ -33,5 +33,5 @@ ORIGINS = [
 AUDIENCE = 'google'
 BAD_REQUEST = 400
 LOYALTY_WEB = 'loyaltywebservice'
-SAVE_TO_WALLET = 'savetowallet'
+SAVE_TO_ANDROID_PAY = 'savetoandroidpay'
 SCOPES = 'https://www.googleapis.com/auth/wallet_object.issuer'
