@@ -96,13 +96,6 @@ def generate_loyalty_class(issuer_id, class_id):
           }
       },
       'programName': 'Baconrista Rewards',
-      'renderSpecs': [{
-          'templateFamily': '1.loyalty_list',
-          'viewName': 'g_list'
-          }, {
-          'templateFamily': '1.loyalty_expanded',
-          'viewName': 'g_expanded'
-      }],
       'rewardsTier': 'Gold',
       'rewardsTierLabel': 'Tier',
       'reviewStatus': 'underReview'
