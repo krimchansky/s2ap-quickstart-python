@@ -22,13 +22,6 @@ def generate_offer_class(issuer_id, class_id):
       'issuerData': {
           'kind': 'walletobjects#typedValue'
       },
-      'renderSpecs': [{
-          'viewName': 'g_list',
-          'templateFamily': '1.offer_list'
-          },{
-          'viewName': 'g_expanded',
-          'templateFamily': '1.offer_expanded'
-      }],
       'title': '20% off one bacon fat latte',
       'redemptionChannel': 'both',
       'provider': 'Baconrista Deals',
