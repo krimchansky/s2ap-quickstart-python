@@ -24,13 +24,6 @@ def generate_giftcard_class(issuer_id, class_id):
       'issuerData': {
           'kind': 'walletobjects#typedValue'
       },
-      'renderSpecs': [{
-          'viewName': 'g_list',
-          'templateFamily': '1.giftCard1_list'
-          },{
-          'viewName': 'g_expanded',
-          'templateFamily': '1.giftCard1_expanded'
-      }],
       'programLogo': {
           'kind': 'walletobjects#image',
           'sourceUri': {
