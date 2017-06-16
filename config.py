@@ -16,7 +16,7 @@ limitations under the License.
 
 SERVICE_ACCOUNT_EMAIL_ADDRESS = 'ServiceAccountEmail@developer.gserviceaccount.com'
 ISSUER_ID = 'IssuerId'
-SERVICE_ACCOUNT_PRIVATE_KEY = 'wobs-privatekey.pem'
+SERVICE_ACCOUNT_PRIVATE_KEY = 'privatekey.json'
 APPLICATION_NAME = 'ApplicationName'
 DISCOVERY_JSON = 'wobs-discovery.json'
 LOYALTY_CLASS_ID = 'LoyaltyClass'

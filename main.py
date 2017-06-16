@@ -34,22 +34,15 @@ from apiclient.discovery import build_from_document
 from apiclient.http import HttpMock
 from google.appengine.ext.webapp import template
 from oauth2client import crypt
-from oauth2client.client import SignedJwtAssertionCredentials
-
-# Load the key in PKCS 12 format that you downloaded from the Google API
-# Console when you created your Service account.
-f = file(config.SERVICE_ACCOUNT_PRIVATE_KEY, 'rb')
-key = f.read()
-f.close()
+from google.auth import crypt as crypt_google
+from oauth2client.service_account import ServiceAccountCredentials
 
 # Create an httplib2.Http object to handle our HTTP requests and authorize it
 # with the Credentials. Note that the first parameter, service_account_name,
 # is the Email address created for the Service account. It must be the email
 # address associated with the key that was created.
-credentials = SignedJwtAssertionCredentials(
-    config.SERVICE_ACCOUNT_EMAIL_ADDRESS,
-    key,
-    scope='https://www.googleapis.com/auth/wallet_object.issuer')
+credentials = ServiceAccountCredentials.from_json_keyfile_name(config.SERVICE_ACCOUNT_PRIVATE_KEY,
+  'https://www.googleapis.com/auth/wallet_object.issuer')
 http = httplib2.Http()
 http = credentials.authorize(http)
 
@@ -58,8 +51,7 @@ f = file(config.DISCOVERY_JSON, 'rb')
 disc_content = f.read()
 f.close()
 
-#service = build('walletobjects', 'v1', http=http)
-service = build_from_document(disc_content,'walletobjects', http=http)
+service = build_from_document(disc_content, http=http)
 
 
 def displayIndex(request):
@@ -105,7 +97,7 @@ def handleJwt(request):
     wob_payload_object.addWalletObjects(giftcard_obj, 'GiftCardObject')
 
   payload = wob_payload_object.getSaveToWalletRequest()
-  signer = crypt.Signer.from_string(key)
+  signer = crypt_google.RSASigner.from_service_account_file(config.SERVICE_ACCOUNT_PRIVATE_KEY)
   signed_jwt = crypt.make_signed_jwt(signer, payload)
 
   response = webapp2.Response(signed_jwt)
