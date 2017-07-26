@@ -18,7 +18,6 @@ SERVICE_ACCOUNT_EMAIL_ADDRESS = 'ServiceAccountEmail@developer.gserviceaccount.c
 ISSUER_ID = 'IssuerId'
 SERVICE_ACCOUNT_PRIVATE_KEY = 'privatekey.json'
 APPLICATION_NAME = 'ApplicationName'
-DISCOVERY_JSON = 'wobs-discovery.json'
 LOYALTY_CLASS_ID = 'LoyaltyClass'
 LOYALTY_OBJECT_ID = 'LoyaltyObject'
 OFFER_CLASS_ID = 'OfferClass'
