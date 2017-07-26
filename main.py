@@ -19,9 +19,7 @@ import json
 import jwt
 import logging
 import os
-import string
 import time
-import urllib
 import webapp2
 import wob_payload
 import httplib2
@@ -30,12 +28,11 @@ import offer
 import giftcard
 import random
 
-from apiclient.discovery import build_from_document
-from apiclient.http import HttpMock
 from google.appengine.ext.webapp import template
 from oauth2client import crypt
 from google.auth import crypt as crypt_google
 from oauth2client.service_account import ServiceAccountCredentials
+from urlparse import urlparse
 
 # Create an httplib2.Http object to handle our HTTP requests and authorize it
 # with the Credentials. Note that the first parameter, service_account_name,
@@ -47,12 +44,6 @@ http = httplib2.Http()
 http = credentials.authorize(http)
 
 logging.info('Credentials: %s' % credentials.to_json())
-f = file(config.DISCOVERY_JSON, 'rb')
-disc_content = f.read()
-f.close()
-
-service = build_from_document(disc_content, http=http)
-
 
 def displayIndex(request):
   """Serves the index page.
@@ -114,28 +105,38 @@ def handleInsert(request):
   Returns:
     The result indicating success/failure of the API call to insert the class.
   """
+  headers = {
+  'Accept': 'application/json',
+  'Content-Type': 'application/json; charset=UTF-8'
+  }
+  method='POST'
+  uri = 'https://www.googleapis.com/walletobjects/v1'
+
   insert_type = request.GET.get('type', '')
 
   if insert_type == 'loyalty':
     object_id = config.LOYALTY_CLASS_ID
     api_object = loyalty.generate_loyalty_class(
       config.ISSUER_ID, object_id)
-    collection = service.loyaltyclass()
+    path = '/loyaltyClass'
   elif insert_type == 'offer':
     object_id = config.OFFER_CLASS_ID
     api_object = offer.generate_offer_class(
       config.ISSUER_ID, object_id)
-    collection = service.offerclass()
+    path = '/offerClass'
   elif insert_type == 'giftcard':
     object_id = config.GIFTCARD_CLASS_ID
     api_object = giftcard.generate_giftcard_class(
       config.ISSUER_ID, object_id)
-    collection = service.giftcardclass()
-  api_request = collection.insert(body=api_object)
-  api_response = api_request.execute()
+    path = '/giftCardClass'
+
+  target = urlparse(uri+path)
+  api_response, content = http.request(
+    target.geturl(), method, json.dumps(api_object), headers)
   response = webapp2.Response('Successfully inserted object')
   if 'error' in api_response.keys():
     response = webapp2.Response('Error inserting object %s' % object_id)
+
   return response
 
 
@@ -196,49 +197,9 @@ def handleWebservice(request):
   response.content_type = 'Application/JWT'
   return response
 
-
-def handleList(request):
-  """List wallet object according to parameters.
-
-  Args:
-    request: A HTTP request object.
-
-  Returns:
-    List of wallet objects
-  """
-  wob_type = request.GET.get('type', '')
-  class_id = request.GET.get('class_id', '')
-  print (wob_type)
-  if wob_type == 'loyalty_class':
-    results = service.loyaltyclass().list(issuerId=config.ISSUER_ID,
-      maxResults='25').execute()
-    results = service.loyaltyclass().list(issuerId=config.ISSUER_ID).execute()
-  elif wob_type == 'offer_class':
-    results = service.offerclass().list(issuerId=config.ISSUER_ID,
-      maxResults='25').execute()
-  elif wob_type == 'giftcard_class':
-    results = service.giftcardclass().list(issuerId=config.ISSUER_ID,
-      maxResults='25').execute()
-  elif wob_type == 'loyalty_object':
-    results = service.loyaltyobject().list(classId=class_id,
-      maxResults='100').execute()
-  elif wob_type == 'offer_object':
-    results = service.offerobject().list(classId=class_id,
-      maxResults='25').execute()
-  elif wob_type == 'giftcard_object':
-    results = service.giftcardobject().list(classId=class_id,
-      maxResults='25').execute()
-  print results['pagination']['resultsPerPage']
-  if 'nextPageToken' in results['pagination']:
-    print results['pagination']['nextPageToken']
-  for wallet_object in results['resources']:
-    print wallet_object['id']
-
-
 application = webapp2.WSGIApplication([
     ('/', displayIndex),
     ('/jwt', handleJwt),
     ('/insert', handleInsert),
-    ('/list', handleList),
     ('/webservice', handleWebservice)
     ])
